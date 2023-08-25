@@ -2,6 +2,8 @@ package com.josuejs.springwebdemo.rest;
 
 import com.josuejs.springwebdemo.entity.Student;
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +36,10 @@ public class StudentRestController {
     @GetMapping("/student/{id}")
     public Student getStudentById(@PathVariable int id){
         return studentList.stream()
-                .filter( student1 -> student1.getId() == id).findFirst().orElse(new Student());
+                .filter( student1 -> student1.getId() == id)
+                .findFirst()
+                .orElseThrow(()->new StudentNotFoundException("Student with id %d not found".formatted(id)));
     }
+
+
 }
