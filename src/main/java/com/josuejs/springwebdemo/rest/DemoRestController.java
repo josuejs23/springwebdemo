@@ -16,10 +16,4 @@ public class DemoRestController {
         return "Hello";
     }
 
-    @GetMapping("/students")
-    public List<Student> getStudents(){
-        return  List.of( new Student(1, "Josue", "Zorrilla"),
-                new Student(2, "Lili", "Zorrilla")
-        );
-    }
 }
